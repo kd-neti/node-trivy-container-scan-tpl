@@ -56,12 +56,21 @@
       "results": [
     {{- $t_first := true }}
     {{- range . }}
+        {{- $target := .Target -}}
+        {{- $image := split " " $target -}}
+        {{- $location := split ":" $image._0 -}}
+        
         {{- range $index, $vulnerability := .Vulnerabilities -}}
           {{- if $t_first -}}
             {{- $t_first = false -}}
           {{ else -}}
             ,
           {{- end }}
+          
+          {{- $artifactLocation := .PkgPath -}} 
+          {{- if empty .PkgPath -}}
+            {{- $artifactLocation = $location._0 -}}
+          {{- end}}
         {
           "ruleId": "{{ $vulnerability.VulnerabilityID }}",
           "ruleIndex": {{ $index }},
@@ -72,7 +81,8 @@
           "locations": [{
             "physicalLocation": {
               "artifactLocation": {
-                "uri": "{{ .PkgPath }}"
+                "uri": "{{ $artifactLocation }}",
+                "uriBaseId": "ROOTPATH"
               },
               "region": {
                 "startLine": 1,
@@ -85,7 +95,12 @@
         {{- end -}}
       {{- end -}}
       ],
-      "columnKind": "utf16CodeUnits"
+      "columnKind": "utf16CodeUnits",
+      "originalUriBaseIds": {
+        "ROOTPATH": {
+          "uri": "file:///"
+        }
+      }
     }
   ]
 }
