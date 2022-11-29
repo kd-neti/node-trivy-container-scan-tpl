@@ -1,4 +1,4 @@
-\{
+{
   "version": "2.1.0",
   "$schema": "https://json.schemastore.org/sarif-2.1.0-rtm.5.json",
   "runs": [
