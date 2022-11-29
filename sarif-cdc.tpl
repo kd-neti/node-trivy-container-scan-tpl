@@ -39,13 +39,17 @@
                 "markdown": {{ printf "**Vulnerability %v**\n| Severity | Package | Installed Version | Fixed Version | Link |\n| --- | --- | --- | --- | --- |\n|%v|%v|%v|%v|[%v](%v)\n[%v](https://cve.report/%v)|\n" .VulnerabilityID .Vulnerability.Severity .PkgName .InstalledVersion .FixedVersion .VulnerabilityID .PrimaryURL .VulnerabilityID .VulnerabilityID | printf "%q"}}
               },
               "properties": {
+                "security-severity": "{{ (index .CVSS (sourceID "nvd")).V3Score }}",
+                "precision": "very-high",
                 "tags": [
                   "vulnerability",
+                  "security",
                   "{{ .Vulnerability.Severity }}",
                   "{{ $ruleType }}",
                   {{ .PkgName | printf "%q" }}
-                ],
-                "precision": "very-high"
+                ]
+                
+                
               }
             }
             {{- end -}}
