@@ -1,0 +1,35 @@
+{
+  "name": "fastify-example-echo",
+  "version": "0.0.1",
+  "description": "A echo-app (API only) example in Fastify",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "tap --cov test/**/*.test.js",
+    "start": "fastify start -l info app.js",
+    "dev": "fastify start -l info -P app.js",
+    "lint": "standard --fix | snazzy"
+  },
+  "keywords": [],
+  "author": "BankwinG <bankwing@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fastify/autoload": "^4.0.0",
+    "@fastify/cors": "^8.1.0",
+    "@fastify/helmet": "^10.0.0",
+    "fastify-plugin": "^4.2.1",
+    "fastify-autoload": "^0.6.0",
+    "fastify": "^4.5.3",
+    "close-with-grace": "1.1.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "snazzy": "^9.0.0",
+    "standard": "^12.0.1",
+    "tap": "^16.3.2",
+    "fastify-cli": "^5.4.1"
+  }
+}
