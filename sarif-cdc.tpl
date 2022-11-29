@@ -1,13 +1,13 @@
-{
-  "$schema": "https://json.schemastore.org/sarif-2.1.0-rtm.5.json",
+\{
   "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0-rtm.5.json",
   "runs": [
     {
       "tool": {
         "driver": {
-          "name": "Trivy",
-          "informationUri": "https://github.com/aquasecurity/trivy",
           "fullName": "Trivy Vulnerability Scanner",
+          "informationUri": "https://github.com/aquasecurity/trivy",
+          "name": "Trivy",
           "version": "0.34.0",
           "rules": [
         {{- $t_first := true }}
@@ -80,7 +80,7 @@
           "ruleIndex": {{ $index }},
           "level": "error",
           "message": {
-            "text": {{ printf "Vulnerability %v\nSeverity: %v\nPackage: %v\nInstalled Version: %v\nFixed Version: %v\nLink: [%v](%v)\nDataSource: [%v](%v)" .VulnerabilityID .Vulnerability.Severity .PkgName .InstalledVersion .FixedVersion .VulnerabilityID .PrimaryURL (index .DataSource).Name (index .DataSource).URL | printf "%q"}},
+            "text": {{ printf "Vulnerability %v\nSeverity: %v\nPackage: %v\nInstalled Version: %v\nFixed Version: %v\nLink: [%v](%v)\nDataSource: [%v](%v)" .VulnerabilityID .Vulnerability.Severity .PkgName .InstalledVersion .FixedVersion .VulnerabilityID .PrimaryURL (index .DataSource).Name (index .DataSource).URL | printf "%q" }}
           },
           "locations": [{
             "physicalLocation": {
