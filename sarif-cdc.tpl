@@ -73,14 +73,14 @@
           
           {{- $artifactLocation := .PkgPath -}} 
           {{- if empty .PkgPath -}}
-            {{ $artifactLocation = print "library/" $location._0 }}
+              {{ $artifactLocation = print "library/" $location._0 }}
           {{- end}}
         {
           "ruleId": "{{ $vulnerability.VulnerabilityID }}",
           "ruleIndex": {{ $index }},
           "level": "error",
           "message": {
-            "text": {{ printf "Package: %v\nInstalled Version: %v\nFixed Version: %v\nLink: [%v](%v)\nDataSource: [%v](%v)" .VulnerabilityID .Vulnerability.Severity .PkgName .InstalledVersion .FixedVersion .VulnerabilityID .PrimaryURL (index .DataSource).Name (index .DataSource).URL | printf "%q" }}
+            "text": {{ printf "Package: %v\nInstalled Version: %v\nVulnerability %v\nSeverity: %v\nFixed Version: %v\nLink: [%v](%v)\nDataSource: [%v](%v)" .PkgName .InstalledVersion .VulnerabilityID .Vulnerability.Severity .FixedVersion .VulnerabilityID .PrimaryURL (index .DataSource).Name (index .DataSource).URL | printf "%q"}}
           },
           "locations": [{
             "physicalLocation": {
