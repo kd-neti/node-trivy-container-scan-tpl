@@ -73,7 +73,7 @@
           
           {{- $artifactLocation := .PkgPath -}} 
           {{- if empty .PkgPath -}}
-            {{- $artifactLocation := "library/" $location._0 -}}
+            {{- $artifactLocation = "library/" $location._0 -}}
           {{- end}}
         {
           "ruleId": "{{ $vulnerability.VulnerabilityID }}",
